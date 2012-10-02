@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+
+
+<style type="text/css">
+.questionForm {
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+/*footer.container.navbar-fixed-top {
+	top: auto;
+	bottom: 0;
+}*/
+</style>
+
+<link
+	href="http://appjangle.com/assets/v02/bootstrap-2.1.0/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="http://appjangle.com/assets/v02/bootstrap-2.1.0/css/bootstrap-responsive.min.css"
+	rel="stylesheet">
+
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<script
+	src="http://appjangle.com/assets/v02/bootstrap-2.1.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<script>
+	window.onload = function() {
+
+	};
+</script>
+
+<body>
+	<div id="valueChain">
+
+
+
+		<div class="row-fluid">
+
+	<div class="span12">
+		<form class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label" for="brandName">Company/Brand</label>
+				<div class="controls">
+					<input type="text" id="brandName" class="brandName input-xxlarge"
+						placeholder="Enter Company Name/Brand" style="width: 100%;">
+					<span class="help-block">Enter the name of a company or
+						brand, such as Toyota or Fonterra.</span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="imageLink">Link for Image</label>
+				<div class="controls">
+					<input type="text" id="imageLink" class="imageLink input-xxlarge"
+						placeholder="Image Link" style="width: 100%;"><span
+						class="add-on"><button
+							class="selectImageButton btn btn-mini">select</button></span> <span
+						class="help-block">Copy & paste a link to an image or click
+						on the select button to select an image. </span>
+				</div>
+			</div>
+
+			<div class="imagePreviewGroup control-group" style="display: none;">
+				<label class="control-label" for="imagePreview">Image
+					Preview</label>
+				<div class="controls">
+					<img class="imagePreview img-polaroid"
+						style="max-width: 200px; max-height: 200px;" src=""></img>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="videoLink">Link for Video</label>
+				<div class="controls">
+					<input type="text" id="videoLink" class="videoLink input-xxlarge"
+						placeholder="Video Link" style="width: 100%;"><span
+						class="add-on"><button
+							class="selectVideoButton btn btn-mini">select</button></span> <span
+						class="help-block">Provide a link to a youtube video giving
+						background information for the brand. </span>
+				</div>
+			</div>
+
+			<div class="videoPreviewGroup control-group" style="display: none;">
+				<label class="control-label" for="videoPreview">Video
+					Preview</label>
+				<div class="controls">
+					<div id="videoPreview" class="videoPreview"></div>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="imageLink">Industry
+					Structure</label>
+				<div class="controls">
+
+
+					<table class="table table-bordered">
+						<tr>
+							<td>Firm infrastructure</td>
+							<td><label class="checkbox"> <input type="checkbox">
+									Key Activity
+							</label></td>
+
+						</tr>
+						<tr>
+							<td>Supplier Power</td>
+							<td><label class="radio" style="color: red;"> <input
+									type="radio" name="supplierRadios" id="supplierRadios1"
+									value="high"> High
+							</label></td>
+							<td><label class="radio" style="color: green;"> <input
+									type="radio" name="supplierRadios" id="supplierRadios2"
+									value="low"> Low
+							</label></td>
+						</tr>
+
+						<tr>
+							<td>Rivalry among Existing Competitors</td>
+							<td><label class="radio" style="color: red;"> <input
+									type="radio" name="rivalryRadios" id="rivalryRadios1"
+									value="high"> High
+							</label></td>
+							<td><label class="radio" style="color: green;"> <input
+									type="radio" name="rivalryRadios" id="rivalryRadios2"
+									value="low"> Low
+							</label></td>
+						</tr>
+
+						<tr>
+							<td>Buyer Power</td>
+							<td><label class="radio" style="color: red;"> <input
+									type="radio" name="buyerRadios" id="buyerRadios1" value="high">
+									High
+							</label></td>
+							<td><label class="radio" style="color: green;"> <input
+									type="radio" name="buyerRadios" id="buyerRadios2" value="low">
+									Low
+							</label></td>
+						</tr>
+
+						<tr>
+							<td>Threat of New Entrants</td>
+							<td><label class="radio" style="color: red;"> <input
+									type="radio" name="entrantsRadios" id="entrantsRadios1"
+									value="high"> High
+							</label></td>
+							<td><label class="radio" style="color: green;"> <input
+									type="radio" name="entrantsRadios" id="entrantsRadios2"
+									value="low"> Low
+							</label></td>
+						</tr>
+
+					</table>
+
+					<span class="help-block">Select for each of 'Porter's five
+						forces' weather for the industry the selected brand operates in
+						the factor is <span style="color: red;">high</span> or <span
+						style="color: green;">low</span>.
+					</span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="justification">Justification</label>
+				<div class="controls">
+					<textarea class="justification" id="justification" rows="7"
+						style="width: 100%;"></textarea>
+					<!-- <input type="text" id="imageLink"
+									class="imageLink input-xxlarge" placeholder="Image Link"> -->
+					<span class="help-block">Provide a short justification for
+						your characterisation of the industry structure for the brand. </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="name">Name</label>
+				<div class="controls">
+					<input type="text" id="name" class="name input-xxlarge"
+						placeholder="Your name (optional)" style="width: 100%;"> <span
+						class="help-block">Optionally provide your name here, which
+						will be displayed with the questions. </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="upi">UPI</label>
+				<div class="controls">
+					<input type="text" id="upi" class="upi input-xxlarge"
+						placeholder="Your UPI (optional, eg mgh032)" style="width: 100%;">
+					<span class="help-block">Optionally provide your UPI
+						(University of Auckland) here, which will be displayed with the
+						questions. </span>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>
+
+
+	</div>
+
+
+
+</body>
+
+</html>
+<!-- one.end -->
