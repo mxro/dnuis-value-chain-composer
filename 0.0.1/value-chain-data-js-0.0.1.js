@@ -37,8 +37,6 @@
 			var selectedActivites = node.select(aValueChainActivitiesList);
 			var upi = node.select(anUPI);
 			var name = node.select(aName);
-
-			throw "Redo value chain data!!!";
 			
 			session.getAll(brandName, brandImage, brandVideo, justification,
 					selectedActivites, upi, name, function() {
@@ -70,11 +68,11 @@
 			var newUPI = node.select(anUPI).setValue(data.upi);
 			var newName = node.select(aName).setValue(data.name);
 
-			session.getAll(newBrandName, newBrandImage, newBrandVideo,
-					newSelectedActivites, newJustification, newUPI, newName,
-					function() {
-						onSuccess();
-					});
+			session.commit().get(function(success) {
+				onSuccess();
+			});
+			
+			
 
 		}
 
