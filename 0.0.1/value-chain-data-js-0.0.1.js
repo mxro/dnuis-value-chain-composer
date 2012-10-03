@@ -45,7 +45,7 @@
 						data.imageLink = brandImage.get().value();
 						data.videoLink = brandVideo.get().value();
 						data.justification = justification.get().value();
-						data.selectedActivites = selectedActivities.get()
+						data.selectedActivites = selectedActivites.get()
 								.value();
 						data.upi = upi.get().value();
 						data.name = name.get().value();
