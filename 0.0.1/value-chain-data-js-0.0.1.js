@@ -38,6 +38,8 @@
 			var upi = node.select(anUPI);
 			var name = node.select(aName);
 
+			throw "Redo value chain data!!!";
+			
 			session.getAll(brandName, brandImage, brandVideo, justification,
 					selectedActivites, upi, name, function() {
 						data.brandName = brandName.get().value();
