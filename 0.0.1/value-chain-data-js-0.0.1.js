@@ -9,7 +9,8 @@
 
 		// constants ------
 		var typesRoot = "http://slicnet.com/mxrogm/mxrogm/apps/nodejump/docs/8/n/Types/";
-		var aValueChainQuestion = session.node(typesRoot + "Value_Chain_Question");
+		var aValueChainQuestion = session.node(typesRoot
+				+ "Value_Chain_Question");
 		var aBrandName = session.node(typesRoot + "Brand_Name");
 		var aBrandImage = session.node(typesRoot + "Brand_Image");
 		var aBrandVideo = session.node(typesRoot + "Video_Link");
@@ -78,13 +79,16 @@
 		qd.priv = {};
 
 		qd.priv.prepareSeedNodeForQuestion = function(data, onSuccess) {
-			session.seed().get(function(node) {
-				node.appendSafe("q", "./q").get(function(questionNode) {
-					qd.priv.writeQuestionDataToNode(questionNode,
-							node.getSecret(), data, onSuccess);
-				});
-			});
-			
+			session.seed().get(
+					function(node) {
+						node.appendSafe("q", "./q").get(
+								function(questionNode) {
+									qd.priv.writeQuestionDataToNode(
+											questionNode, node.getSecret(),
+											data, onSuccess);
+								});
+					});
+
 		};
 
 		/**
@@ -92,54 +96,44 @@
 		 */
 		qd.priv.writeQuestionDataToNode = function(node, secret, data,
 				onSuccess) {
-			
-			session.getAll(node.append(aValueChainQuestion), 
-					node.append(data.brandName, "./brandName").append(aBrandName),
-					node.append(data.imageLink, "./brandImageLink").append(aBrandImage),
-					node.append(data.videoLink, "./brandVideoLink").append(aBrandVideo),
-					node.append(data.selectedActivites, "./selectedActivites").append(aValueChainActivitiesList),
-					node.append(data.justification, "./justification").append(aJustification),
-					node.append(data.upi, "./upi").append(anUPI),
-					node.append(data.name, "./name").append(aName),
-					function() {
-				
-				onSuccess(node, secret);
-				
-				session.post(node.uri() + "&" + secret, "http://slicnet.com/questio/questio", "pc1aj8opxtdjk19").get(function(success) {
-					AJ.ui
-					.notify(
-							"Last Status: Question posted for review.",
-							"alert-success");
-				});
-			});
-			
-			
 
-			client
-					.commit({
-						onSuccess : function() {
+			node.append(aValueChainQuestion);
+			node.append(data.brandName, "./brandName").append(aBrandName);
+			node.append(data.imageLink, "./brandImageLink").append(aBrandImage);
 
-							onSuccess(node, secret);
+			node.append(data.videoLink, "./brandVideoLink").append(aBrandVideo);
+			node.append(data.selectedActivites, "./selectedActivites").append(
+					aValueChainActivitiesList);
+			node.append(data.justification, "./justification").append(
+					aJustification);
+			node.append(data.upi, "./upi").append(anUPI);
+			node.append(data.name, "./name").append(aName);
 
-							client
-									.post({
-										message : node.url() + "&" + secret,
-										to : client
-												.reference("http://slicnet.com/questio/questio"),
-										secret : "pc1aj8opxtdjk19",
-										onSuccess : function(res) {
-											
-										},
-										onFailure : function(ex) {
+			session
+					.commit(function(success) {
+
+						onSuccess(node, secret);
+
+						session
+								.post(node.uri() + "&" + secret,
+										"http://slicnet.com/questio/questio",
+										"pc1aj8opxtdjk19")
+								.catchExceptions(function(er) {
+									AJ.ui
+									.notify(
+											"Unexpected error while posting question: ["+er.exception+"].",
+											"alert-error");
+								})
+								.get(
+										function(success) {
 											AJ.ui
 													.notify(
-															"Unexpected exception while posting question: "
-																	+ ex,
-															"alert-error");
-										}
-									});
-						}
+															"Last Status: Question posted for review.",
+															"alert-success");
+										});
 					});
+
+			
 
 		};
 
