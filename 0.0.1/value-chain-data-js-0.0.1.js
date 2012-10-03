@@ -40,6 +40,7 @@
 			
 			session.getAll(brandName, brandImage, brandVideo, justification,
 					selectedActivites, upi, name, function() {
+						var data = {};
 						data.brandName = brandName.get().value();
 						data.imageLink = brandImage.get().value();
 						data.videoLink = brandVideo.get().value();
