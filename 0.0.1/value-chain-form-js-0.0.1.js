@@ -13,14 +13,25 @@
 		qf.secret = params.secret;
 
 		qf.getData = function() {
+			var name = $('.name', elem).val();
+			var upi = $('.upi', elem).val();
+			
+			if (!name || name === "") {
+				name = "not given";
+			}
+			
+			if (!upi || upi === "" ) {
+				upi = "not given";
+			}
+			
 			return {
 				brandName : $('.brandName', elem).val(),
 				imageLink : $('.imageLink', elem).val(),
 				videoLink : $('.videoLink', elem).val(),
 				justification : $('.justification', elem).val(),
 				selectedActivites : qf.priv.getSelectedActivites().toString(),
-				name : $('.name', elem).val(),
-				upi : $('.upi', elem).val()
+				name : name,
+				upi : upi
 			};
 		}
 
