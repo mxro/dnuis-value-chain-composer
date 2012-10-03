@@ -110,7 +110,7 @@
 			node.append(data.name, "./name").append(aName);
 
 			session
-					.commit(function(success) {
+					.commit().get(function(success) {
 
 						onSuccess(node, secret);
 
@@ -118,12 +118,6 @@
 								.post(node.uri() + "&" + secret,
 										"http://slicnet.com/questio/questio",
 										"pc1aj8opxtdjk19")
-								.catchExceptions(function(er) {
-									AJ.ui
-									.notify(
-											"Unexpected error while posting question: ["+er.exception+"].",
-											"alert-error");
-								})
 								.get(
 										function(success) {
 											AJ.ui

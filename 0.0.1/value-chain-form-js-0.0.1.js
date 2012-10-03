@@ -28,6 +28,11 @@
 
 			var inputs = qf.getData();
 
+			if (!(inputs.selectedActivites.split(',').length === 3)) {
+				alert("Please select exactly three key activites.");
+				return;
+			}
+			
 			// validate inputs
 			if (!inputs.brandName) {
 				alert("Please provide a brand name!");
@@ -39,6 +44,8 @@
 				return;
 			}
 
+			
+			
 			qf.onSubmit(inputs);
 
 		};
@@ -203,7 +210,7 @@
 		// init UI
 		(function() {
 
-			$('input:checkbox .selectedActivites', elem)
+			$('input:checkbox', $('.selectedActivites', elem))
 					.click(
 							function(evt) {
 								if (qf.priv.getSelectedActivites().length > 3) {
@@ -227,6 +234,7 @@
 				evt.preventDefault();
 				qf.priv.createVideoPicker();
 			});
+			
 		})();
 
 		return {

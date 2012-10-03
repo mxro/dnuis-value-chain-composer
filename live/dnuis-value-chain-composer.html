@@ -288,20 +288,15 @@ html,body {
 		//AJ.navbar = $.ajInitNavbar($("#ajnavbar"), aj);
 		AJ.progressBar=$.ajInitProgressBar($("#ajprogressbar"));
 		
-		//var client = aj.createClient();
-		
-		//var valuechainapp = $.initValueChainApp({
-		//	elem: $('#composer'),
-		//	client: client
-		//});
 		
 	}
 
 	window.onNextweb = function() {
 		var session = Nextweb.createSession();
-
-		session.close().get(function(success) {
-			alert("session successfully closed!");
+		
+		var valuechainapp = $.initValueChainApp({
+			elem: $('#composer'),
+			session: session
 		});
 	};
 	

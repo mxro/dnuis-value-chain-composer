@@ -31,7 +31,7 @@
 					qc.sd.submitQuestion(res, function(node, secret) {
 						AJ.ui.hideProgressBar();
 						
-						$('.questionLink', elem).attr('href', "http://appjangle.com/view#"+node.url()+"&"+secret);
+						$('.questionLink', elem).attr('href', "http://appjangle.com/view#"+node.uri()+"&"+secret);
 						$('.successMessage', elem).fadeIn();
 					});
 				}
@@ -57,6 +57,15 @@
 				$('.submitButton', elem).click(function(evt) {
 					qc.sf.submit();
 				});
+				
+				
+				session.catchExceptions(function(er) {
+					AJ.ui
+					.notify(
+							"An unexpected error occured: ["+er.message+"]\n"+"   Caused by: ["+er.origin+"]",
+							"alert-error");
+				});
+				
 			}) ();
 			
 			
