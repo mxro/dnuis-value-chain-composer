@@ -47,8 +47,13 @@
 						data.justification = justification.get().value();
 						data.selectedActivites = selectedActivites.get()
 								.value();
-						data.upi = upi.get().value();
-						data.name = name.get().value();
+						
+						if (upi.get()) {
+							data.upi = upi.get().value();
+						}
+						if (name.get()) {
+							data.name = name.get().value();
+						}
 
 						onSuccess(data);
 					});
@@ -57,23 +62,36 @@
 
 		qd.updateQuestionData = function(node, secret, data, onSuccess) {
 
-			var newBrandName = node.select(aBrandName).setValue(data.brandName);
-			var newBrandImage = node.select(aBrandImage).setValue(
+			node.select(aBrandName).setValue(data.brandName);
+			node.select(aBrandImage).setValue(
 					data.imageLink);
-			var newBrandVideo = node.select(aBrandVideo).setValue(
+			node.select(aBrandVideo).setValue(
 					data.videoLink);
-			var newSelectedActivites = node.select(aValueChainActivitiesList)
+			node.select(aValueChainActivitiesList)
 					.setValue(data.selectedActivites);
-			var newJustification = node.select(aJustification).setValue(
+			node.select(aJustification).setValue(
 					data.justification);
-			var newUPI = node.select(anUPI).setValue(data.upi);
-			var newName = node.select(aName).setValue(data.name);
-
-			session.commit().get(function(success) {
-				onSuccess();
+			
+			var upi = node.select(anUPI);
+			
+			var name = node.select(aName);
+			
+			session.getAll(upi, name, function() {
+				if (upi.get()) {
+					upi.setValue(data.upi);
+				}
+				
+				if (name.get()) {
+					name.setValue(data.name);
+				}
+				
+				session.commit().get(function(success) {
+					
+					
+					
+					onSuccess();
+				});
 			});
-			
-			
 
 		}
 
